@@ -29,6 +29,6 @@ block_t *block_create(block_t const *prev, int8_t const *data,
 	info.timestamp = time(NULL);
 
 	new_block->data = new_data, new_block->info = info;
-	new_block->transactions = llist_create(MT_support_false);
+	new_block->transactions = llist_create(MT_SUPPORT_FALSE);
 	return (new_block);
 }
