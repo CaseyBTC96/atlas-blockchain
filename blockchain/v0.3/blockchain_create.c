@@ -11,15 +11,16 @@ blockchain_t *blockchain_create(void)
 	block_info_t info = {0, 0, 1537578000, 0, {0}};
 	block_data_t data = {"Holberton School", 16};
 
-	new_chain = malloc(sizeof(blockchain_t));
+	new_chain = calloc(1, sizeof(blockchain_t));
 	if (!new_chain)
 		return (NULL);
-	new_block = malloc(sizeof(block_t));
+	new_block = calloc(1, sizeof(block_t));
 	if (!new_block)
 		return (NULL);
 	new_chain->chain = llist_create(MT_SUPPORT_FALSE);
 	if (!new_chain->chain)
 		return (free(new_chain), NULL);
+	new_chain->unspent = llist_create(MT_SUPPORT_FALSE);
 	new_block->info = info, new_block->data = data;
 	memcpy(new_block->hash, HOLBERTON_HASH, SHA256_DIGEST_LENGTH);
 
