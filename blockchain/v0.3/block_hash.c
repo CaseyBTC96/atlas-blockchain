@@ -32,3 +32,18 @@ uint8_t *block_hash(block_t const *block,
 
 	return (hash_buf);
 }
+
+/**
+ * tx_id_cpy - function to copy tx_id into a buffer
+ * @tx: Transaction to store to buffer
+ * @iter: index of transaction
+ * @buffer: Buffer to copy into
+ * Return: 1 on Fail, otherwise 0
+ */
+int tx_id_cpy(llist_node_t tx, unsigned int iter, void *buffer)
+{
+	memcpy(
+		(uint8_t *)buffer + iter * SHA256_DIGEST_LENGTH,
+		((transaction_t *)tx)->id, SHA256_DIGEST_LENGTH);
+	return (0);
+}
